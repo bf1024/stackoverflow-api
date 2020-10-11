@@ -1,0 +1,21 @@
+<h1 id="tableLabel">Stack overflow tags</h1>
+
+
+<p *ngIf="!tags"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="tags">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Count</th>
+      <th>Percent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tag of tags">
+      <td>{{ tag.name }}</td>
+      <td>{{ tag.count }}</td>
+      <td>{{ tag.percent }} %</td>
+    </tr>
+  </tbody>
+</table>
