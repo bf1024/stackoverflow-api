@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using StackOverflowAPI.Dtos;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Models;
@@ -20,11 +21,13 @@ namespace StackOverflowUI.Controllers
         ITagsService _tagsService;
         IMapper _mapper;
         IConfiguration _configuration;
-        public TagsController(ITagsService tagsService, IMapper mapper, IConfiguration configuration)
+        ILogger _logger;
+        public TagsController(ITagsService tagsService, IMapper mapper, IConfiguration configuration, ILogger<TagsController> logger)
         {
             _tagsService = tagsService;
             _mapper = mapper;
             _configuration = configuration;
+            _logger = logger;
         }
         // GET: api/<TagsController>
         [HttpGet]
@@ -32,6 +35,7 @@ namespace StackOverflowUI.Controllers
         {
             var tags = _tagsService.Get(_configuration.GetValue<string>("Settings:StackOverflowApiKey"));
             var tagDTOs = _mapper.Map<List<TagDTO>>(tags);
+            _logger.LogInformation("OK");
             return Ok(tagDTOs);
         }
     }

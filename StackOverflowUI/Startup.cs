@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Services;
 using StackOverflowUI.Mappings;
@@ -37,7 +38,7 @@ namespace StackOverflowUI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -50,6 +51,7 @@ namespace StackOverflowUI
                 app.UseHsts();
             }
 
+            loggerFactory.AddFile("Logs/StackOverflowApi-{Date}.txt");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
