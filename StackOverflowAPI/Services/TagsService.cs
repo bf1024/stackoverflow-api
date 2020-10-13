@@ -14,35 +14,38 @@ namespace StackOverflowAPI.Services
     public class TagsService : ITagsService
     {
 
-        public List<Tag> Get()
+        public List<Tag> Get(string apiKey)
         {
-            List<Tag> list = new List<Tag>();
+            var list = new List<Tag>();
 
-                for (int i = 1; i < 11; i++)
+                for (var i = 1; i < 11; i++)
                 {
-                    HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create("https://api.stackexchange.com/2.2/tags?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&page="+i+"&pagesize=100&order=desc&sort=popular&filter=default");
+                    var httpRequest = (HttpWebRequest)WebRequest.Create(
+                        $"https://api.stackexchange.com/2.2/tags?key={apiKey}&site=stackoverflow&page={i}&pagesize=100&order=desc&sort=popular&filter=default");
                     httpRequest.Method = "GET";
                     httpRequest.Accept = "*/*";
                     httpRequest.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-                    using (HttpWebResponse webResponse = (HttpWebResponse)httpRequest.GetResponse())
+                    using (var webResponse = (HttpWebResponse)httpRequest.GetResponse())
                     {
-                        using (Stream dataStream = webResponse.GetResponseStream())
+                        using (var dataStream = webResponse.GetResponseStream())
                         {
                             // Open the stream using a StreamReader for easy access.
-                            StreamReader reader = new StreamReader(dataStream);
+                            var reader = new StreamReader(dataStream);
                             // Read the content.
-                            string responseFromServer = reader.ReadToEnd();
-                            TagListDTOIn tagListDTO = JsonConvert.DeserializeObject<TagListDTOIn>(responseFromServer);
-                        List<Tag> list2 = tagListDTO.items.Select((item) => new Tag { Name = item.name, Count = item.count, Percent = 0 }).ToList();
+                            var responseFromServer = reader.ReadToEnd();
+                            var tagListDTO = JsonConvert.DeserializeObject<TagListDTOIn>(responseFromServer);
+                            var list2 = tagListDTO.items.Select((item) => new Tag { Name = item.name, Count = item.count, Percent = 0 }).ToList();
 
-                        list = list.Concat(list2).ToList();
+                            list = list.Concat(list2).ToList();
+                            if (!tagListDTO.has_more)
+                            break;
                         }
                         
                     }
                 }
 
-                int countAll = list.Sum(a => a.Count);
-                foreach(Tag tag in list)
+                var countAll = list.Sum(a => a.Count);
+                foreach(var tag in list)
                 {
                     tag.Percent = Decimal.Round(((tag.Count/Convert.ToDecimal(countAll))* 100),4);
                 };

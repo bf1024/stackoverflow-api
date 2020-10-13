@@ -1,2 +1,9 @@
 StackOverflowAPI/bin/
 StackOverflowAPI/obj/
+StackOverflowUITests/obj/
+StackOverflowUITests/bin/
+StackOverflowTests/obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs
+StackOverflowTests/obj/
+StackOverflowAPITests/obj/Debug/netcoreapp3.1/StackOverflowAPITests.AssemblyInfo.cs
+StackOverflowAPITests/obj/
+.vs/

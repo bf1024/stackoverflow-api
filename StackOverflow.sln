@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflowUI", "StackOverflowUI\StackOverflowUI.csproj", "{F1D1C27E-F74A-4851-BFAB-7E2E78076487}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StackOverflowUI", "StackOverflowUI\StackOverflowUI.csproj", "{F1D1C27E-F74A-4851-BFAB-7E2E78076487}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflowAPI", "StackOverflowAPI\StackOverflowAPI.csproj", "{CED135D3-51E8-46EA-AE81-C33B14E07B65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StackOverflowAPI", "StackOverflowAPI\StackOverflowAPI.csproj", "{CED135D3-51E8-46EA-AE81-C33B14E07B65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverflowUITests", "StackOverflowUITests\StackOverflowUITests.csproj", "{10E128A8-B272-428D-810A-E427425E9B58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CED135D3-51E8-46EA-AE81-C33B14E07B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CED135D3-51E8-46EA-AE81-C33B14E07B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CED135D3-51E8-46EA-AE81-C33B14E07B65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10E128A8-B272-428D-810A-E427425E9B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10E128A8-B272-428D-810A-E427425E9B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10E128A8-B272-428D-810A-E427425E9B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10E128A8-B272-428D-810A-E427425E9B58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

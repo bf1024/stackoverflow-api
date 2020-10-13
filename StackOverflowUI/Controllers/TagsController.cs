@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using StackOverflowAPI.Dtos;
 using StackOverflowAPI.Interfaces;
 using StackOverflowAPI.Models;
@@ -18,17 +19,19 @@ namespace StackOverflowUI.Controllers
     {
         ITagsService _tagsService;
         IMapper _mapper;
-        public TagsController(ITagsService tagsService, IMapper mapper)
+        IConfiguration _configuration;
+        public TagsController(ITagsService tagsService, IMapper mapper, IConfiguration configuration)
         {
             _tagsService = tagsService;
             _mapper = mapper;
+            _configuration = configuration;
         }
         // GET: api/<TagsController>
         [HttpGet]
         public IActionResult Get()
         {
-            List<Tag> tags = _tagsService.Get();
-            List<TagDTO> tagDTOs = _mapper.Map<List<TagDTO>>(tags);
+            var tags = _tagsService.Get(_configuration.GetValue<string>("Settings:StackOverflowApiKey"));
+            var tagDTOs = _mapper.Map<List<TagDTO>>(tags);
             return Ok(tagDTOs);
         }
     }

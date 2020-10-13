@@ -8,6 +8,6 @@ namespace StackOverflowAPI.Interfaces
 {
     public interface ITagsService
     {
-        public List<Tag> Get();
+        public List<Tag> Get(string apiKey);
     }
 }

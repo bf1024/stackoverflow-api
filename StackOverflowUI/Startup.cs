@@ -26,7 +26,7 @@ namespace StackOverflowUI
         {
             services.AddControllersWithViews();
             // Mapper(cfg => cfg.AddProfile<MappingProfile>());
-
+            services.AddSingleton(Configuration);
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<ITagsService, TagsService>();
             // In production, the Angular files will be served from this directory
